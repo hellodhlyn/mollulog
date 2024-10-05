@@ -5,6 +5,8 @@ import { GoogleStrategy } from "remix-auth-google";
 import type { Env } from "~/env.server";
 import type { Sensei } from "~/models/sensei";
 import { getOrCreateSenseiByGoogleId } from "~/models/sensei";
+import { PasskeyStrategy } from "./passkey-strategy.server";
+import { verifyPasskeyAuthentication } from "~/models/passkey";
 
 let _sessionStorage: SessionStorage;
 let _authenticator: Authenticator<Sensei>;
@@ -50,6 +52,15 @@ export function getAuthenticator(env: Env): Authenticator<Sensei> {
       throw e;
     }
   }), "google");
+
+  authenticator.use(new PasskeyStrategy<Sensei>(async ({ authenticationResponse }) => {
+    const sensei = await verifyPasskeyAuthentication(env, authenticationResponse);
+    if (!sensei) {
+      console.error("Passkey not matched");
+      throw "Passkey not matched";
+    }
+    return sensei;
+  }), "passkey");
 
   _authenticator = authenticator;
   return authenticator;

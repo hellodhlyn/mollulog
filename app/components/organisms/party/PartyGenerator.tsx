@@ -101,11 +101,13 @@ export default function PartyGenerator({ party, raids, studentStates }: PartyGen
         </div>
       }
 
-      <Button type="submit" text="저장" color="primary" />
-      <Button type="button" text="초기화" color="red" onClick={() => setUnits([])} />
-      <Link to="/edit/parties">
-        <Button type="button" text="취소" />
-      </Link>
+      <div className="flex gap-x-1">
+        <Button type="submit" text="저장" color="primary" />
+        <Button type="button" text="초기화" color="red" onClick={() => setUnits([])} />
+        <Link to="/edit/parties">
+          <Button type="button" text="취소" />
+        </Link>
+      </div>
     </div>
   );
 }

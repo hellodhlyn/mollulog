@@ -28,7 +28,7 @@ export default function Header({ currentUsername }: HeaderProps) {
             </Link>
           </>
         )}
-        {(currentUsername === null && !pathname.startsWith("/signin")) && (
+        {currentUsername === null && (
           <>
             <Link to="/futures" className="cursor-pointer hover:opacity-50 hover:underline transition-opacity">
               <span>미래시</span>

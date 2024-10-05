@@ -64,7 +64,7 @@ export default function ProfileEditor({ students, initialData, error }: ProfileE
         description="게임 내 [소셜] > [친구] > [ID 카드] 에서 확인할 수 있어요."
       />
 
-      <Button type="submit" text="완료" color="primary" className="my-4" />
+      <Button type="submit" text="완료" color="primary" className="mb-8 md:mb-16" />
     </>
   );
 }

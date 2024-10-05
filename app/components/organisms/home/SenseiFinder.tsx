@@ -2,6 +2,7 @@ import { Link, useNavigate } from "@remix-run/react";
 import postposition from "cox-postposition";
 import { Shuffle, UserBadgeCheck } from "iconoir-react";
 import { useState } from "react";
+import { SubButton } from "~/components/atoms/button";
 import TierSelector from "~/components/molecules/editor/TierSelector";
 import { StudentSearch } from "~/components/molecules/student";
 import { studentImageUrl } from "~/models/assets";
@@ -27,18 +28,15 @@ export default function SenseiFinder(
     <>
       <div className="flex gap-x-2">
         <Link to="/sensei/random">
-          <div className="flex items-center px-4 py-2 gap-x-1 bg-neutral-200 hover:opacity-75 rounded-lg cursor-pointer transition">
+          <SubButton>
             <Shuffle className="size-4" strokeWidth={2} />
             <span>무작위</span>
-          </div>
+          </SubButton>
         </Link>
-        <div
-          className="flex items-center px-4 py-2 gap-x-1 bg-neutral-200 hover:opacity-75 rounded-lg cursor-pointer transition"
-          onClick={() => { finder === "student" ? setFinder(null) : setFinder("student") }}
-        >
+        <SubButton onClick={() => { finder === "student" ? setFinder(null) : setFinder("student") }}>
           <UserBadgeCheck className="size-4" strokeWidth={2} />
           <span>모집한 학생</span>
-        </div>
+        </SubButton>
       </div>
 
       {finder === "student" && (
