@@ -5,7 +5,6 @@ import { ProfileCard } from "~/components/organisms/profile";
 import { getFollowerIds, getFollowingIds } from "~/models/followership";
 import type { ActionData } from "./api.followerships";
 import { getAuthenticator } from "~/auth/authenticator.server";
-import { studentImageUrl } from "~/models/assets";
 import { getRouteSensei } from "./$username";
 import { useSignIn } from "~/contexts/SignInProvider";
 import { getRecruitedStudents } from "~/models/recruited-student";
@@ -66,12 +65,6 @@ export default function UserIndex() {
   }
 
   const fetcher = useFetcher<ActionData>();
-
-  let imageUrl: string | null = null;
-  if (sensei.profileStudentId !== null) {
-    imageUrl = studentImageUrl(sensei.profileStudentId);
-  }
-
   const { showSignIn } = useSignIn();
 
   return (
@@ -79,7 +72,7 @@ export default function UserIndex() {
       <div className="my-8">
         <ProfileCard
           {...sensei}
-          imageUrl={imageUrl}
+          profileStudentUid={sensei.profileStudentId}
           tierCounts={tierCounts}
           followability={followability}
           followerCount={loaderData.followerCount}

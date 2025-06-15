@@ -95,7 +95,7 @@ function MenuContent({ currentUsername, currentRole, pathname, onMenuClose, onSh
             onItemClick={onMenuClose}
           />
           <MenuItem
-            to="/edit/profile"
+            to="/edit"
             name="프로필 관리"
             OutlineIcon={PencilSquareIconOutline}
             SolidIcon={PencilSquareIconSolid}

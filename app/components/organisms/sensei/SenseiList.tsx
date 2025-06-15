@@ -19,7 +19,7 @@ export default function SenseiList({ senseis }: SenseiListProps) {
           <Link key={`sensei-${sensei.username}`} to={`/@${sensei.username}`}>
             <div className="my-4 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition rounded-lg">
               <ProfileUsername
-                imageUrl={sensei.profileStudentId && studentImageUrl(sensei.profileStudentId)}
+                profileStudentUid={sensei.profileStudentId}
                 username={sensei.username}
                 bio={sensei.bio}
                 friendCode={sensei.friendCode}

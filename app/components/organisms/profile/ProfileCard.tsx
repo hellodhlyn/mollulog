@@ -3,7 +3,7 @@ import { ProfileUsername } from "~/components/molecules/profile";
 import TierCounts from "~/components/molecules/student/TierCounts";
 
 export type ProfileCardProps = {
-  imageUrl: string | null;
+  profileStudentUid: string | null;
   username: string;
   bio: string | null;
   friendCode: string | null;

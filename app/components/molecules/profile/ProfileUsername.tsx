@@ -1,9 +1,10 @@
 import { PencilSquareIcon, UserIcon, UserMinusIcon, UserPlusIcon, UsersIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router";
+import ProfileImage from "~/components/atoms/student/ProfileImage";
 import { sanitizeClassName } from "~/prophandlers";
 
 type ProfileUsernameProps = {
-  imageUrl: string | null;
+  profileStudentUid: string | null;
   username: string;
   bio: string | null;
   friendCode: string | null;
@@ -16,19 +17,12 @@ type ProfileUsernameProps = {
 };
 
 export default function ProfileUsername({
-  imageUrl, username, bio, friendCode, loading, followability, followerCount, followingCount, onFollow, onUnfollow,
+  profileStudentUid, username, bio, friendCode, loading, followability, followerCount, followingCount, onFollow, onUnfollow,
 }: ProfileUsernameProps) {
   return (
     <div className="m-4 md:m-6">
       <div className="flex items-center">
-        {imageUrl ?
-          <img className="size-12 md:w-16 md:h-16 rounded-full object-cover" src={imageUrl ?? ""} alt={`${username}의 프로필`} /> :
-          (
-            <div className="size-12 md:w-16 md:h-16 flex items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">
-              <UserIcon className="size-8" />
-            </div>
-          )
-        }
+        <ProfileImage studentUid={profileStudentUid} imageSize={16} />
         <div className="ml-2 md:ml-4 grow">
           <p className="font-bold text-lg md:text-xl">@{username}</p>
           <div className="flex flex-col md:flex-row text-sm">
@@ -84,7 +78,7 @@ export default function ProfileUsername({
           </button>
         )}
         {followability === "unable" && (
-          <Link to="/edit/profile" className="shrink-0 ml-2">
+          <Link to="/edit" className="shrink-0 ml-2">
             <button
               type="button"
               className="px-4 py-2 flex items-center text-white border border-neutral-900 bg-neutral-900 rounded-full transition disabled:opacity-50 hover:bg-neutral-700 cursor-pointer"
